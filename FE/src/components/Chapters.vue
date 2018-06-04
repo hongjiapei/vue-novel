@@ -1,0 +1,92 @@
+<template>
+    <div>
+      <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name">
+      <span slot="left">
+        <mu-icon value="navigate_before" @click="goBack"></mu-icon>
+      </span>
+      </mu-appbar>
+      <div style="margin-top: 60px;" v-if="chapters.length > 0">
+        <mu-list>
+          <mu-list-item button v-for="(item,index) in chapters" :style="{marginTop:'6px',marginBottom:'10px'}" :to="'/chapter/detail?book_name='+book_name+'&get_chapterDetail_url='+item.get_chapterDetail_url">
+            <mu-list-item-title>{{item.chapter_name}}</mu-list-item-title>
+            <mu-list-item-action>
+              <mu-icon value="navigate_next"></mu-icon>
+            </mu-list-item-action>
+          </mu-list-item>
+        </mu-list>
+        <mu-row gutter>
+          <mu-col span="3"><mu-button :disabled="get_chapters_url === first_url" @click="changePage(first_url)">首页</mu-button></mu-col>
+          <mu-col span="3"><mu-button :disabled="get_chapters_url === prev_url" @click="changePage(prev_url)">上页</mu-button></mu-col>
+          <mu-col span="3"><mu-button :disabled="get_chapters_url === next_url" @click="changePage(next_url)">下页</mu-button></mu-col>
+          <mu-col span="3"><mu-button :disabled="get_chapters_url === last_url" @click="changePage(last_url)">尾页</mu-button></mu-col>
+        </mu-row>
+      </div>
+    </div>
+</template>
+
+<script>
+    export default {
+      data () {
+        return {
+          book_name: '',
+          get_chapters_url: '',
+          chapters: [],
+          first_url: '',
+          prev_url: '',
+          next_url: '',
+          last_url: '',
+        }
+      },
+      methods: {
+        getChapters (website) {
+          this.$http.get('/novel/chapters?website='+website).then(res => {
+            this.get_chapters_url = website
+            this.chapters = res.data
+            if (this.chapters.length > 0) {
+              if (this.chapters[0].hasOwnProperty('first_url')) {
+                this.first_url = this.chapters[0].first_url
+              } else {
+                this.first_url = this.get_chapters_url
+              }
+              if (this.chapters[0].hasOwnProperty('prev_url')) {
+                this.prev_url = this.chapters[0].prev_url
+              } else {
+                this.prev_url = this.get_chapters_url
+              }
+              if (this.chapters[0].hasOwnProperty('next_url')) {
+                this.next_url = this.chapters[0].next_url
+              } else {
+                this.next_url = this.get_chapters_url
+              }
+              if (this.chapters[0].hasOwnProperty('last_url')) {
+                this.last_url = this.chapters[0].last_url
+              } else {
+                this.last_url = this.get_chapters_url
+              }
+            }
+          })
+        },
+        goBack () {
+          this.$router.back()
+        },
+        changePage (url) {
+          this.getChapters(url)
+        },
+        scrollToTop () {
+          window.scroll(0, 0)
+        }
+      },
+      mounted () {
+        this.book_name = this.$route.query.book_name
+        this.get_chapters_url = this.$route.query.get_chapters_url
+        this.getChapters(this.get_chapters_url)
+      },
+      watch:{
+        'chapters': 'scrollToTop'
+      }
+    }
+</script>
+
+<style scoped>
+
+</style>

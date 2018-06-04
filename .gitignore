@@ -1,0 +1,27 @@
+FE/.DS_Store
+FE/node_modules/
+FE/dist/
+FE/npm-debug.log*
+FE/yarn-debug.log*
+FE/yarn-error.log*
+
+# Editor directories and files
+.idea
+FE/.idea
+.vscode
+FE/.vscode
+*.suo
+FE/*.suo
+*.ntvs*
+FE/*.ntvs*
+*.njsproj
+FE/*.njsproj
+*.sln
+FE/*.sln
+
+BE/vendor
+BE/.idea
+BE/Homestead.json
+BE/Homestead.yaml
+BE/.env
+
