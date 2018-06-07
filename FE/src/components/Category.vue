@@ -22,11 +22,13 @@
       },
       methods: {
         getCategories () {
+          if (this.$store.state.isLoading) return false
           this.$http.get('/novel/categories').then(res => {
               this.categories = res.data
               this.setCategories(res.data)
           })
         },
+        // 小说分类存入localStorage
         setCategories (categories=[],expire=86400) {
           let tmp = {
             expire_time:Date.parse(new Date())/1000+expire,
@@ -39,14 +41,13 @@
         }
       },
       mounted () {
+        // 读取小说分类，缓存没过期直接用，过期了重新获取并设置缓存
         let categories = Vue.localStorage.get('categories')
         if (categories) {
           categories = JSON.parse(categories)
-          // 过期了重新拉取分类并存到localStorage
           if (categories.expire_time < Date.parse(new Date())/1000) {
             this.getCategories()
           } else {
-          // 没过期则直接用
             this.categories = categories.categories
           }
         } else {

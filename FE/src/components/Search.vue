@@ -27,7 +27,9 @@
       },
       methods: {
         getSearch () {
-          if (!this.keyword) return false
+          if (!this.keyword || this.$store.state.isLoading) return false
+          // 让搜索框blur，这样手机键盘会收回去
+          document.getElementsByClassName('mu-text-field-input')[0].blur()
           this.$http.get('/novel/search?keyword='+this.keyword).then(res => {
             this.lists = res.data
           })

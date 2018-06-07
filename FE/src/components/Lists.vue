@@ -39,6 +39,7 @@
       },
       methods: {
         getLists (website) {
+          if (this.$store.state.isLoading) return false
           this.$http.get('/novel/lists?website='+website).then(res => {
             this.lists = res.data
             this.category_url = website
@@ -70,19 +71,24 @@
           this.$router.back()
         },
         changePage (url) {
+          if (this.$store.state.isLoading) return false
           this.getLists(url)
         },
         scrollToTop () {
           window.scroll(0, 0)
-        }
+        },
+        setCategoryUrl () {
+          this.$store.state.current_category_url = this.category_url
+        },
       },
       mounted () {
         this.category_name = this.$route.query.category_name
-        this.category_url = this.$route.query.category_url
+        this.category_url = this.$store.state.current_category_url || this.$route.query.category_url
         this.getLists(this.category_url)
       },
       watch: {
         'lists': 'scrollToTop',
+        'category_url': 'setCategoryUrl',
       }
     }
 </script>

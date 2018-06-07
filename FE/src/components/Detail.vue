@@ -4,21 +4,21 @@
       <span slot="left">
         <mu-icon value="navigate_before" @click="goBack"></mu-icon>
       </span>
+      <mu-button flat slot="right" :to="'/'" color="rgba(0,0,0,0.54)">
+        <mu-icon value="home"></mu-icon>
+      </mu-button>
     </mu-appbar>
     <div style="margin-top: 60px;" v-if="book_description">
       <mu-card style="width: 100%; max-width: 375px; margin: 0 auto;">
         <mu-card-text v-html="book_description"></mu-card-text>
         <mu-card-actions>
-          <mu-button flat :to="'/chapters?book_name='+book_name+'&get_chapters_url='+get_chapters_url">查看目录</mu-button>
+          <mu-button flat :to="'/chapters?book_url='+book_url+'&book_name='+book_name+'&get_chapters_url='+get_chapters_url">查看目录</mu-button>
         </mu-card-actions>
         <mu-card-actions v-if="book && book.hasOwnProperty('get_chapterDetail_url')">
-          <mu-button flat :to="'/chapter/detail?book_name='+book_name+'&get_chapterDetail_url='+book.get_chapterDetail_url">继续上次阅读</mu-button>
+          <mu-button flat :to="'/chapter/detail?book_url='+book_url+'&book_name='+book_name+'&get_chapterDetail_url='+book.get_chapterDetail_url">继续上次阅读</mu-button>
         </mu-card-actions>
         <mu-card-actions>
           <mu-button flat @click="toggleSaveBook">{{showText}}</mu-button>
-        </mu-card-actions>
-        <mu-card-actions>
-          <mu-button flat :to="'/'">返回书架</mu-button>
         </mu-card-actions>
       </mu-card>
       <mu-alert color="#ff1d5e" :show="isShow" transition="mu-scale-transition">
@@ -45,6 +45,7 @@
       },
       methods: {
         getDetail (website) {
+          if (this.$store.state.isLoading) return false
           this.$http.get('/novel/detail?website='+website).then(res => {
             this.book_description = res.data.book_description
             this.get_chapters_url = res.data.get_chapters_url
@@ -54,8 +55,8 @@
           this.$router.back()
         },
         toggleSaveBook () {
-          if (Vue.localStorage.get(this.book_name)) {
-            Vue.localStorage.remove(this.book_name)
+          if (Vue.localStorage.get(this.book_url)) {
+            Vue.localStorage.remove(this.book_url)
             this.isShow = !this.isShow
             this.showText = '加入书架'
             setTimeout(()=>{
@@ -63,25 +64,29 @@
             },1000)
             return false
           }
-          let book = {book_name: this.book_name, book_url: this.book_url,}
+          let book = {book_name: this.book_name, book_url: this.book_url}
           book = JSON.stringify(book)
-          Vue.localStorage.set(this.book_name,book)
+          Vue.localStorage.set(this.book_url,book)
           this.isShow = !this.isShow
           this.showText = '从书架删除'
           setTimeout(()=>{
             this.isShow = !this.isShow
           },1000)
         },
+        scrollToTop () {
+          window.scroll(0, 0)
+        }
       },
       mounted () {
         this.book_url = this.$route.query.book_url
         this.book_name = this.$route.query.book_name
-        this.showText = Vue.localStorage.get(this.book_name) ? '从书架删除' : '加入书架'
+        this.showText = Vue.localStorage.get(this.book_url) ? '从书架删除' : '加入书架'
         this.getDetail(this.book_url)
-        let book = Vue.localStorage.get(this.book_name)
+        let book = Vue.localStorage.get(this.book_url)
         if (book) {
           this.book = JSON.parse(book)
         }
+        this.scrollToTop()
       },
     }
 </script>

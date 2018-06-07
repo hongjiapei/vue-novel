@@ -10,9 +10,10 @@ export default new Router({
       path: '/',
       component: Container,
       children: [
-        {path: '/', component: ()=>import('@/components/Bookshelf')},
-        {path: '/category', component: ()=>import('@/components/Category')},
-        {path: '/search', component: ()=>import('@/components/Search')},
+        {path: '/', redirect: '/bookshelf'},
+        {path: '/bookshelf', component: ()=>import('@/components/Bookshelf'),},
+        {path: '/category', component: ()=>import('@/components/Category'),},
+        {path: '/search', component: ()=>import('@/components/Search'),},
       ],
     },
     {

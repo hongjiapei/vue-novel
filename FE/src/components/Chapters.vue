@@ -1,13 +1,16 @@
 <template>
     <div>
       <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name">
-      <span slot="left">
-        <mu-icon value="navigate_before" @click="goBack"></mu-icon>
-      </span>
+        <span slot="left">
+          <mu-icon value="navigate_before" @click="goBack"></mu-icon>
+        </span>
+        <mu-button flat slot="right" :to="'/'" color="rgba(0,0,0,0.54)">
+          <mu-icon value="home"></mu-icon>
+        </mu-button>
       </mu-appbar>
       <div style="margin-top: 60px;" v-if="chapters.length > 0">
         <mu-list>
-          <mu-list-item button v-for="(item,index) in chapters" :style="{marginTop:'6px',marginBottom:'10px'}" :to="'/chapter/detail?book_name='+book_name+'&get_chapterDetail_url='+item.get_chapterDetail_url">
+          <mu-list-item button v-for="(item,index) in chapters" :style="{marginTop:'6px',marginBottom:'10px'}" :to="'/chapter/detail?book_url='+book_url+'&book_name='+book_name+'&get_chapterDetail_url='+item.get_chapterDetail_url">
             <mu-list-item-title>{{item.chapter_name}}</mu-list-item-title>
             <mu-list-item-action>
               <mu-icon value="navigate_next"></mu-icon>
@@ -28,6 +31,7 @@
     export default {
       data () {
         return {
+          book_url: '',
           book_name: '',
           get_chapters_url: '',
           chapters: [],
@@ -39,6 +43,7 @@
       },
       methods: {
         getChapters (website) {
+          if (this.$store.state.isLoading) return false
           this.$http.get('/novel/chapters?website='+website).then(res => {
             this.get_chapters_url = website
             this.chapters = res.data
@@ -74,15 +79,20 @@
         },
         scrollToTop () {
           window.scroll(0, 0)
-        }
+        },
+        setGetChaptersUrl () {
+          this.$store.state.current_get_chapters_url = this.get_chapters_url
+        },
       },
       mounted () {
+        this.book_url = this.$route.query.book_url
         this.book_name = this.$route.query.book_name
-        this.get_chapters_url = this.$route.query.get_chapters_url
+        this.get_chapters_url = this.$store.state.current_get_chapters_url || this.$route.query.get_chapters_url
         this.getChapters(this.get_chapters_url)
       },
       watch:{
-        'chapters': 'scrollToTop'
+        'chapters': 'scrollToTop',
+        'get_chapters_url': 'setGetChaptersUrl',
       }
     }
 </script>

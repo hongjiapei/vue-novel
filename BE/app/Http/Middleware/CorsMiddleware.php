@@ -9,7 +9,14 @@ use Illuminate\Http\Response;
 class CorsMiddleware
 {
     private $headers;
-    private $allow_origin;
+    private $allow_origin = [
+        'http://xs.hjply.com',
+        'http://localhost',
+        'http://127.0.0.1',
+        'http://localhost:80',
+        'http://127.0.0.1:80',
+        'http://localhost:8080',
+    ];
 
     public function handle(Request $request, \Closure $next)
     {
@@ -20,18 +27,11 @@ class CorsMiddleware
             'Access-Control-Max-Age' => 1728000 //该字段可选，用来指定本次预检请求的有效期，在此期间，不用发出另一条预检请求。
         ];
 
-        $this->allow_origin = [
-            '*',
-            'http://xs.hjply.com',
-            'http://localhost:8080'
-        ];
         $origin = isset($_SERVER['HTTP_ORIGIN']) ? $_SERVER['HTTP_ORIGIN'] : '';
 
-        if (!in_array('*',$this->allow_origin)) {
-            //如果origin不在允许列表内，直接返回403
-            if (!in_array($origin, $this->allow_origin) && !empty($origin))
-                return new Response('Forbidden', 403);
-        }
+        //如果origin不在允许列表内，直接返回403
+        if ( !in_array($origin, $this->allow_origin) && !empty($origin) )
+            return new Response('Forbidden', 403);
 
         //如果是复杂请求，先返回一个200，并allow该origin
         if ($request->isMethod('options'))
