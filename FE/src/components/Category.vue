@@ -38,7 +38,10 @@
         },
         scrollToTop () {
           window.scroll(0, 0)
-        }
+        },
+        clearCategoryUrl () {
+          this.$store.state.current_category_url = ''
+        },
       },
       mounted () {
         // 读取小说分类，缓存没过期直接用，过期了重新获取并设置缓存
@@ -53,7 +56,7 @@
         } else {
           this.getCategories()
         }
-
+        this.clearCategoryUrl()
         this.scrollToTop()
       }
     }
