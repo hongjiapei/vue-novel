@@ -61,11 +61,9 @@
 
 >- 上架的时候一般都要你加固app，用腾讯出的乐加固就可以了。加固的时候需要KeyStore文件，DCloud公用证书信息如下：  
 
-```
-[签名证书KeyStore文件](http://download.dcloud.net.cn/HBuilder.keystore)
-证书别名：hbuilder
-证书密码：123456
-keystore密码：123456
-```  
+[签名证书KeyStore文件](http://download.dcloud.net.cn/HBuilder.keystore)  
+证书别名：hbuilder  
+证书密码：123456  
+keystore密码：123456 
 
 
