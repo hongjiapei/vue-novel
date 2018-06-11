@@ -59,10 +59,10 @@
 
 >- 现在各大应用商店审核比较严格，上架app需要著作权证书、不侵权、广告要符合各个商店的要求等等，我这个提交到酷安都一周了都没审核通过，另外，app说明、图片等等都要不同的要求，照着做就行  
 
->- 上架的时候一般都要你加固app，用腾讯出的乐加固就可以了。加固的时候需要KeyStore文件，HBuilder公有证书信息如下：  
+>- 上架的时候一般都要你加固app，用腾讯出的乐加固就可以了。加固的时候需要KeyStore文件，DCloud公用证书信息如下：  
 
 ```
-签名证书KeyStore文件 下载地址: http://download.dcloud.net.cn/HBuilder.keystore
+[签名证书KeyStore文件](http://download.dcloud.net.cn/HBuilder.keystore)
 证书别名：hbuilder
 证书密码：123456
 keystore密码：123456
