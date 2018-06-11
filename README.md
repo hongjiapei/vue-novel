@@ -1,7 +1,7 @@
 记录一下项目心得  
 
 [web在线访问](https://xs.hjply.com)  
-[app下载](https://pan.baidu.com/s/1jq83DjQjUoWia7h9Nezc4Q)
+[app下载](https://pan.baidu.com/s/17FAKi-J4rwzoFDUBHS7bRg)
 
 ### 关于前端  
 
