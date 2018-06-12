@@ -10,6 +10,7 @@ class CorsMiddleware
 {
     private $headers;
     private $allow_origin = [
+        'http://xs.hjply.com',
         'https://xs.hjply.com',
         'http://localhost',
         'http://127.0.0.1',
