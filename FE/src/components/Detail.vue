@@ -75,7 +75,10 @@
         },
         scrollToTop () {
           window.scroll(0, 0)
-        }
+        },
+        clearGetChaptersUrl () {
+          this.$store.state.current_get_chapters_url = ''
+        },
       },
       mounted () {
         this.book_url = this.$route.query.book_url
@@ -86,6 +89,7 @@
         if (book) {
           this.book = JSON.parse(book)
         }
+        this.clearGetChaptersUrl()
         this.scrollToTop()
       },
     }
