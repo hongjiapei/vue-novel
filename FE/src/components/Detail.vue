@@ -1,11 +1,11 @@
 <template>
   <div>
-    <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name">
+    <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name" :color="'#ff1d5e'">
       <span slot="left">
         <mu-icon value="navigate_before" @click="goBack"></mu-icon>
       </span>
       <mu-button flat slot="right" :to="'/'" color="rgba(0,0,0,0.54)">
-        <mu-icon value="home"></mu-icon>
+        <mu-icon value="home" :color="'#fff'"></mu-icon>
       </mu-button>
     </mu-appbar>
     <div style="margin-top: 60px;" v-if="book_description">

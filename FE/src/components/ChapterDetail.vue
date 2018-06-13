@@ -1,19 +1,19 @@
 <template>
     <div>
-      <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name">
+      <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name" :color="'#ff1d5e'" :style="{background:isDark ? '#111': '#ff1d5e'}">
         <span slot="left">
           <mu-icon value="navigate_before" @click="goBack"></mu-icon>
         </span>
         <mu-button flat slot="right" :to="'/'" color="rgba(0,0,0,0.54)">
-          <mu-icon value="home"></mu-icon>
+          <mu-icon value="home" :color="'#fff'"></mu-icon>
         </mu-button>
       </mu-appbar>
       <div style="margin-top: 60px;" v-if="chapter_content" @click="operate('','',$event)">
         <mu-card :style="{width: '100%',maxWidth: '375px', margin: '0 auto'}">
-          <mu-card-title :sub-title="chapter_name"></mu-card-title>
+          <mu-card-text v-html="chapter_name" :style="{textAlign:'center',background:isDark ? '#111': '#fff', color:isDark ? '#ccc': '#000',fontSize:fontSize+'px',}"></mu-card-text>
           <mu-card-text v-html="chapter_content" :style="{textAlign: 'left',background:isDark ? '#111': '#fff', color:isDark ? '#ccc': '#000',fontSize:fontSize+'px',}"></mu-card-text>
         </mu-card>
-        <mu-appbar style="width: 100%;position: fixed;bottom: 0;">
+        <mu-appbar :color="'#ff1d5e'" :style="{width: '100%',position: 'fixed',bottom: 0,background:isDark ? '#111': '#ff1d5e'}">
           <mu-row gutter>
             <mu-col span="4"><mu-button flat :disabled="prev_url === get_chapters_url" @click="changePage(prev_url)">上页</mu-button></mu-col>
             <mu-col span="4"><mu-button flat :to="'/chapters?book_name='+book_name+'&get_chapters_url='+get_chapters_url">目录</mu-button></mu-col>

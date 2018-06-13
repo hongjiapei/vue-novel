@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mu-appbar style="width: 100%;position: fixed;top: 0;" title="书架" :z-depth="1">
+    <mu-appbar style="width: 100%;position: fixed;top: 0;" title="书架" :z-depth="1" :color="'#ff1d5e'">
          <span slot="left">
         <mu-icon value="menu" @click="drawerShow = !drawerShow"></mu-icon>
       </span>
@@ -16,7 +16,7 @@
         </mu-grid-tile>
       </mu-grid-list>
     </div>
-    <mu-drawer :open.sync="drawerShow" :docked="false">
+    <mu-drawer :open.sync="drawerShow" :docked="false" :style="{background:'rgba(255,255,255,0.92)'}">
       <mu-list toggle-nested>
         <mu-list-item button nested :open="true">
           <mu-list-item-title>书源设置</mu-list-item-title>

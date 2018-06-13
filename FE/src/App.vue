@@ -1,7 +1,8 @@
 <template>
-  <div id="app">
-    <atom-spinner
-      :animation-duration="1000"
+  <div>
+    <breeding-rhombus-spinner
+      :animation-duration="2000"
+      :size="65"
       :color="'#ff1d5e'"
       v-show="$store.state.isLoading"
       :style="loadingStyle"
@@ -17,11 +18,10 @@
 </template>
 
 <script>
-  import {AtomSpinner,LoopingRhombusesSpinner} from 'epic-spinners'
+  import {BreedingRhombusSpinner} from 'epic-spinners'
   export default {
     components: {
-      AtomSpinner,
-      LoopingRhombusesSpinner,
+      BreedingRhombusSpinner,
     },
     data () {
       return {
@@ -57,5 +57,11 @@
     text-align: center;
     color: #2c3e50;
     margin-bottom: 60px;
+  }
+  .mu-appbar-title {
+    text-align: center;
+  }
+  .mu-card-actions {
+    text-align: center;
   }
 </style>

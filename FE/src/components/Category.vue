@@ -1,9 +1,9 @@
 <template>
     <div>
-      <mu-appbar style="width: 100%;position: fixed;top: 0;" title="分类" :z-depth="1"></mu-appbar>
+      <mu-appbar style="width: 100%;position: fixed;top: 0;" title="分类" :z-depth="1" :color="'#ff1d5e'"></mu-appbar>
       <div style="margin-top: 60px;">
         <mu-list>
-          <mu-list-item :to="'/lists?category_name='+item.category_name+'&category_url='+item.category_url" button v-for="(item,index) in $store.state.categories" :class="index % 2 === 0 ? 'white' : 'gray'">
+          <mu-list-item :to="'/lists?category_name='+item.category_name+'&category_url='+item.category_url" button v-for="(item,index) in $store.state.categories">
             <mu-list-item-title :style="{textAlign: 'center'}">{{item.category_name}}</mu-list-item-title>
           </mu-list-item>
         </mu-list>
@@ -63,10 +63,5 @@
 </script>
 
 <style scoped>
-  .gray {
-    background-color: rgba(240,240,240,1);
-  }
-  .white {
-    background-color: #fff;
-  }
+
 </style>

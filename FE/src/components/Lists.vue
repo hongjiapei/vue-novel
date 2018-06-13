@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="category_name">
+    <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="category_name" :color="'#ff1d5e'">
       <span slot="left">
         <mu-icon value="navigate_before" @click="goBack"></mu-icon>
       </span>
@@ -15,10 +15,10 @@
         </mu-list-item>
       </mu-list>
       <mu-row gutter>
-        <mu-col span="3" @click="changePage(first_url)"><mu-button :disabled="category_url === first_url">首页</mu-button></mu-col>
-        <mu-col span="3" @click="changePage(prev_url)"><mu-button :disabled="category_url === prev_url">上页</mu-button></mu-col>
-        <mu-col span="3" @click="changePage(next_url)"><mu-button :disabled="category_url === next_url">下页</mu-button></mu-col>
-        <mu-col span="3" @click="changePage(last_url)"><mu-button :disabled="category_url === last_url">尾页</mu-button></mu-col>
+        <mu-col span="3" @click="changePage(first_url)"><mu-button :disabled="category_url === first_url" :color="'#ff1d5e'">首页</mu-button></mu-col>
+        <mu-col span="3" @click="changePage(prev_url)"><mu-button :disabled="category_url === prev_url" :color="'#ff1d5e'">上页</mu-button></mu-col>
+        <mu-col span="3" @click="changePage(next_url)"><mu-button :disabled="category_url === next_url" :color="'#ff1d5e'">下页</mu-button></mu-col>
+        <mu-col span="3" @click="changePage(last_url)"><mu-button :disabled="category_url === last_url" :color="'#ff1d5e'">尾页</mu-button></mu-col>
       </mu-row>
     </div>
   </div>

@@ -5,8 +5,8 @@ import store from '../store/index'
 // 响应时间
 axios.defaults.timeout = 5000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-axios.defaults.baseURL = 'http://local.xiaoshuobe.com'
-// axios.defaults.baseURL = 'http://xsbe.hjply.com'
+// axios.defaults.baseURL = 'http://local.xiaoshuobe.com'
+axios.defaults.baseURL = 'http://xsbe.hjply.com'
 
 axios.defaults.retry = 1; //重试次数
 axios.defaults.retryDelay = 1000;//重试延时
