@@ -6,8 +6,8 @@
       </span>
     </mu-appbar>
     <div style="margin-top: 60px;">
-      <mu-grid-list v-if="books.length > 0">
-        <mu-grid-tile v-for="(item,index) in books" @click="toDetail(item)">
+      <mu-grid-list v-if="$store.state.books.length > 0">
+        <mu-grid-tile v-for="(item,index) in $store.state.books" @click="toDetail(item)">
           <img src="./static/img/0_compressed.png" :style="{width:'100%',height:'100%'}">
           <span slot="title">{{item.book_name}}</span>
           <mu-button slot="action" icon>
@@ -25,17 +25,17 @@
           </mu-list-item-action>
           <mu-list-item button :ripple="false" slot="nested">
             <mu-list-item-title>
-              <mu-radio :label="'笔趣阁(m.biquge5200.cc)'" :value="'001'" v-model="source"></mu-radio>
+              <mu-radio :label="'笔趣阁(m.biquge5200.cc)'" :value="'001'" v-model="$store.state.source"></mu-radio>
             </mu-list-item-title>
           </mu-list-item>
           <mu-list-item button :ripple="false" slot="nested">
             <mu-list-item-title>
-              <mu-radio :label="'有空再做'" :value="'002'" v-model="source" disabled></mu-radio>
+              <mu-radio :label="'三七中文(m.37zw.net)'" :value="'002'" v-model="$store.state.source"></mu-radio>
             </mu-list-item-title>
           </mu-list-item>
           <mu-list-item button :ripple="false" slot="nested">
             <mu-list-item-title>
-              <mu-radio :label="'有空再做'" :value="'003'" v-model="source" disabled></mu-radio>
+              <mu-radio :label="'有空再做'" :value="'003'" v-model="$store.state.source" disabled></mu-radio>
             </mu-list-item-title>
           </mu-list-item>
         </mu-list-item>
@@ -59,7 +59,6 @@
     export default {
       data () {
         return {
-          books: [],
           drawerShow: false,
           source: '001',
           // 把不是book的过滤掉
@@ -74,7 +73,7 @@
             if (this.localStorageFilter.includes(v)) return false
             try {
               let book = JSON.parse(Vue.localStorage.get(v))
-              this.books.push(book)
+              this.$store.state.books.push(book)
             } catch (e) {
 
             }
@@ -90,11 +89,10 @@
         },
         clearCache () {
           window.localStorage.clear()
+          this.$store.state.books = []
+          this.$store.state.categories = []
+          this.getCacheSize()
           this.isClearCacheShow = false
-          this.$router.push({
-            path: '/'
-          })
-          window.location.reload()
         },
         // 缓存大小，单位KB
         getCacheSize () {
@@ -104,11 +102,25 @@
           })
           this.cacheSize = (cacheSize/1024).toFixed(2)
         },
+        changeSource () {
+          localStorage.clear()
+          this.$store.state.books = []
+          this.$store.state.categories = []
+          Vue.localStorage.set('source',this.$store.state.source)
+          this.drawerShow = false
+        },
+        setSource () {
+          this.$store.state.source = Vue.localStorage.get('source') || '001'
+        }
       },
       mounted () {
         this.getBooks()
+        this.setSource()
         this.scrollToTop()
         this.getCacheSize()
+      },
+      watch: {
+        '$store.state.source': 'changeSource',
       },
     }
 </script>

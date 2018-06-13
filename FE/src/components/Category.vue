@@ -3,7 +3,7 @@
       <mu-appbar style="width: 100%;position: fixed;top: 0;" title="分类" :z-depth="1"></mu-appbar>
       <div style="margin-top: 60px;">
         <mu-list>
-          <mu-list-item :to="'/lists?category_name='+item.category_name+'&category_url='+item.category_url" button v-for="(item,index) in categories" :class="index % 2 === 0 ? 'white' : 'gray'">
+          <mu-list-item :to="'/lists?category_name='+item.category_name+'&category_url='+item.category_url" button v-for="(item,index) in $store.state.categories" :class="index % 2 === 0 ? 'white' : 'gray'">
             <mu-list-item-title :style="{textAlign: 'center'}">{{item.category_name}}</mu-list-item-title>
           </mu-list-item>
         </mu-list>
@@ -17,14 +17,14 @@
     export default {
       data () {
         return {
-          categories: [],
+
         }
       },
       methods: {
         getCategories () {
           if (this.$store.state.isLoading) return false
           this.$http.get('/novel/categories').then(res => {
-              this.categories = res.data
+              this.$store.state.categories = res.data
               this.setCategories(res.data)
           })
         },
@@ -51,7 +51,7 @@
           if (categories.expire_time < Date.parse(new Date())/1000) {
             this.getCategories()
           } else {
-            this.categories = categories.categories
+            this.$store.state.categories = categories.categories
           }
         } else {
           this.getCategories()

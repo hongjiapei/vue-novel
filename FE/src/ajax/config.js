@@ -5,31 +5,40 @@ import store from '../store/index'
 // 响应时间
 axios.defaults.timeout = 5000
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8'
-// axios.defaults.baseURL = 'http://local.xiaoshuobe.com'
-axios.defaults.baseURL = 'http://xsbe.hjply.com'
+axios.defaults.baseURL = 'http://local.xiaoshuobe.com'
+// axios.defaults.baseURL = 'http://xsbe.hjply.com'
 
 axios.defaults.retry = 1; //重试次数
 axios.defaults.retryDelay = 1000;//重试延时
 axios.defaults.shouldRetry = (error) => true;//重试条件，默认只要是错误都需要重试
 
-// POST传参序列化(添加请求拦截器)
-axios.interceptors.request.use(config => {
+// 请求拦截器：post传参序列化，同时从localStorage取出小说源
+axios.interceptors.request.use((config)=>{
   store.state.isLoading = true
-  if (config.method === 'post') {
-    config.data = qs.stringify(config.data)
+  const source = localStorage.getItem('source') || '001'
+  if(config.method === 'post') {
+    let data = qs.parse(config.data)
+    config.data = qs.stringify({
+      source: source,
+      ...data
+    })
+  } else if(config.method === 'get') {
+    config.params = {
+      source: source,
+      ...config.params
+    }
   }
-  return config
-  }, err => {
+  return config;
+}, (error)=>{
   store.state.isLoading = false
-  return Promise.reject(err)
-  }
-)
+  return Promise.reject(error);
+})
+
 // 返回状态判断(添加响应拦截器) + 失败重试
 axios.interceptors.response.use((res) => {
   if (res.status === 200) {
     store.state.isLoading = false
     store.state.isRetryShow = false
-    store.state.isLoadingFailed = false
     return res
   }
 }, (err) => {
@@ -48,11 +57,16 @@ axios.interceptors.response.use((res) => {
   config.__retryCount = config.__retryCount || 0;
   // 判断是否超过了重试次数
   if(config.__retryCount >= config.retry) {
-    store.state.isRetryShow = false
-    store.state.isLoadingFailed = true
+    store.state.isRetryShow = true
+    store.state.retryText = '加载失败，请检查网络或者换源试试'
+    setTimeout(()=>{
+      store.state.isRetryShow = false
+      store.state.retryText = '加载失败，自动重试中...'
+    },2000)
     return Promise.reject(err);
   } else {
     store.state.isRetryShow = true
+    store.state.retryText = '加载失败，自动重试中...'
   }
   //重试次数自增
   config.__retryCount += 1;
