@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name" :color="'#ff1d5e'">
+      <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name" :color="'rgb(236, 81, 134)'">
         <span slot="left">
           <mu-icon value="navigate_before" @click="goBack"></mu-icon>
         </span>
@@ -18,10 +18,10 @@
           </mu-list-item>
         </mu-list>
         <mu-row gutter>
-          <mu-col span="3"><mu-button :disabled="get_chapters_url === first_url" @click="changePage(first_url)" :color="'#ff1d5e'">首页</mu-button></mu-col>
-          <mu-col span="3"><mu-button :disabled="get_chapters_url === prev_url" @click="changePage(prev_url)" :color="'#ff1d5e'">上页</mu-button></mu-col>
-          <mu-col span="3"><mu-button :disabled="get_chapters_url === next_url" @click="changePage(next_url)" :color="'#ff1d5e'">下页</mu-button></mu-col>
-          <mu-col span="3"><mu-button :disabled="get_chapters_url === last_url" @click="changePage(last_url)" :color="'#ff1d5e'">尾页</mu-button></mu-col>
+          <mu-col span="3"><mu-button :disabled="get_chapters_url === first_url" @click="changePage(first_url)" :color="'rgb(233, 30, 99)'">首页</mu-button></mu-col>
+          <mu-col span="3"><mu-button :disabled="get_chapters_url === prev_url" @click="changePage(prev_url)" :color="'rgb(233, 30, 99)'">上页</mu-button></mu-col>
+          <mu-col span="3"><mu-button :disabled="get_chapters_url === next_url" @click="changePage(next_url)" :color="'rgb(233, 30, 99)'">下页</mu-button></mu-col>
+          <mu-col span="3"><mu-button :disabled="get_chapters_url === last_url" @click="changePage(last_url)" :color="'rgb(233, 30, 99)'">尾页</mu-button></mu-col>
         </mu-row>
       </div>
     </div>

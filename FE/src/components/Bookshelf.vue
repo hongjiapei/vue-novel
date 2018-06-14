@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mu-appbar style="width: 100%;position: fixed;top: 0;" title="书架" :z-depth="1" :color="'#ff1d5e'">
+    <mu-appbar style="width: 100%;position: fixed;top: 0;" title="书架" :z-depth="1" :color="'rgb(241, 64, 124)'">
          <span slot="left">
         <mu-icon value="menu" @click="drawerShow = !drawerShow"></mu-icon>
       </span>
@@ -23,17 +23,17 @@
           <mu-list-item-action>
             <mu-icon size="24" :value="'keyboard_arrow_down'"></mu-icon>
           </mu-list-item-action>
-          <mu-list-item button :ripple="false" slot="nested">
+          <mu-list-item button :ripple="false" slot="nested" @click="changeSource">
             <mu-list-item-title>
               <mu-radio :label="'笔趣阁(m.biquge5200.cc)'" :value="'001'" v-model="$store.state.source"></mu-radio>
             </mu-list-item-title>
           </mu-list-item>
-          <mu-list-item button :ripple="false" slot="nested">
+          <mu-list-item button :ripple="false" slot="nested" @click="changeSource">
             <mu-list-item-title>
               <mu-radio :label="'三七中文(m.37zw.net)'" :value="'002'" v-model="$store.state.source"></mu-radio>
             </mu-list-item-title>
           </mu-list-item>
-          <mu-list-item button :ripple="false" slot="nested">
+          <mu-list-item button :ripple="false" slot="nested" @click="changeSource">
             <mu-list-item-title>
               <mu-radio :label="'有空再做'" :value="'003'" v-model="$store.state.source" disabled></mu-radio>
             </mu-list-item-title>
@@ -62,7 +62,7 @@
           drawerShow: false,
           source: '001',
           // 把不是book的过滤掉
-          localStorageFilter: ['categories','fontSize','isDark','loglevel:webpack-dev-server'],
+          localStorageFilter: ['categories','fontSize','isDark','loglevel:webpack-dev-server','source'],
           isClearCacheShow: false,
           cacheSize: 0,
         }
@@ -74,6 +74,13 @@
             try {
               let book = JSON.parse(Vue.localStorage.get(v))
               this.$store.state.books.push(book)
+
+              // 对象数组去重
+              let hash = {}
+              this.$store.state.books = this.$store.state.books.reduce(function(item, next) {
+                hash[next.book_url] ? '' : hash[next.book_url] = true && item.push(next)
+                return item
+              }, [])
             } catch (e) {
 
             }
@@ -118,9 +125,7 @@
         this.setSource()
         this.scrollToTop()
         this.getCacheSize()
-      },
-      watch: {
-        '$store.state.source': 'changeSource',
+        console.log(this.$store.state.books)
       },
     }
 </script>

@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mu-appbar style="width: 100%;position: fixed;top: 0;" title="分类" :z-depth="1" :color="'#ff1d5e'"></mu-appbar>
+      <mu-appbar style="width: 100%;position: fixed;top: 0;" title="分类" :z-depth="1" :color="'rgb(236, 81, 134)'"></mu-appbar>
       <div style="margin-top: 60px;">
         <mu-list>
           <mu-list-item :to="'/lists?category_name='+item.category_name+'&category_url='+item.category_url" button v-for="(item,index) in $store.state.categories">

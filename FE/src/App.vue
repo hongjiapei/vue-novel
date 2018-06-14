@@ -3,14 +3,14 @@
     <breeding-rhombus-spinner
       :animation-duration="2000"
       :size="65"
-      :color="'#ff1d5e'"
+      :color="'rgb(233, 30, 99)'"
       v-show="$store.state.isLoading"
       :style="loadingStyle"
     />
-    <mu-snackbar :color="'#ff1d5e'" :open.sync="$store.state.isRetryShow">
+    <mu-snackbar :color="'rgb(233, 30, 99)'" :open.sync="$store.state.isRetryShow">
        {{$store.state.retryText}}
     </mu-snackbar>
-    <mu-snackbar :color="'#ff1d5e'" :open.sync="$store.state.isLastPage">
+    <mu-snackbar :color="'rgb(233, 30, 99)'" :open.sync="$store.state.isLastPage">
       没有更多章节了
     </mu-snackbar>
     <router-view/>
