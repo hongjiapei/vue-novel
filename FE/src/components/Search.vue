@@ -1,9 +1,9 @@
 <template>
   <div>
-    <mu-appbar style="width: 100%;position: fixed;top: 0;" title="搜索" :z-depth="1" :color="'rgb(236, 81, 134)'"></mu-appbar>
+    <mu-appbar style="width: 100%;position: fixed;top: 0;" title="搜索" :z-depth="1" :color="'#ff0052'"></mu-appbar>
     <div style="margin-top: 80px;margin-left: 10px;">
       <mu-text-field placeholder="请输入书名" v-model="keyword" @keyup.enter="getSearch"></mu-text-field>
-      <mu-button @click="getSearch" :color="'rgb(236, 81, 134)'">搜索</mu-button>
+      <mu-button @click="getSearch" :color="'#ff0052'">搜索</mu-button>
       <br/>
       <mu-list>
         <mu-list-item button v-for="(item,index) in lists" :style="{marginTop:'6px',marginBottom:'10px'}" :to="'/detail?book_name='+item.book_name+'&book_url='+item.book_url">

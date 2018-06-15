@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mu-appbar style="width: 100%;position: fixed;top: 0;" title="书架" :z-depth="1" :color="'rgb(241, 64, 124)'">
+    <mu-appbar style="width: 100%;position: fixed;top: 0;" title="书架" :z-depth="1" :color="'#ff0052'">
          <span slot="left">
         <mu-icon value="menu" @click="drawerShow = !drawerShow"></mu-icon>
       </span>
@@ -69,13 +69,14 @@
       },
       methods: {
         getBooks () {
+          this.$store.state.books = []
           Object.keys(localStorage).forEach((v,i)=>{
             if (this.localStorageFilter.includes(v)) return false
             try {
               let book = JSON.parse(Vue.localStorage.get(v))
               this.$store.state.books.push(book)
 
-              // 对象数组去重
+              // 去重
               let hash = {}
               this.$store.state.books = this.$store.state.books.reduce(function(item, next) {
                 hash[next.book_url] ? '' : hash[next.book_url] = true && item.push(next)
@@ -109,6 +110,7 @@
           })
           this.cacheSize = (cacheSize/1024).toFixed(2)
         },
+        // 切换小说源
         changeSource () {
           localStorage.clear()
           this.$store.state.books = []
@@ -125,7 +127,6 @@
         this.setSource()
         this.scrollToTop()
         this.getCacheSize()
-        console.log(this.$store.state.books)
       },
     }
 </script>

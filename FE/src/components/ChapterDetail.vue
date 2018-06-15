@@ -1,6 +1,6 @@
 <template>
     <div>
-      <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name" :color="'rgb(236, 81, 134)'" :style="{background:isDark ? '#111': 'rgb(236, 81, 134)'}">
+      <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name" :color="'#ff0052'" :style="{background:isDark ? '#111': '#ff0052'}">
         <span slot="left">
           <mu-icon value="navigate_before" @click="goBack"></mu-icon>
         </span>
@@ -8,42 +8,42 @@
           <mu-icon value="home" :color="'#fff'"></mu-icon>
         </mu-button>
       </mu-appbar>
-      <div style="margin-top: 60px;" v-if="chapter_content" @click="operate('','',$event)">
+      <div style="margin: 58px 0;" v-if="chapter_content" @click="operate('','',$event)">
         <mu-card :style="{width: '100%',maxWidth: '375px', margin: '0 auto'}">
           <mu-card-text v-html="chapter_name" :style="{textAlign:'center',background:isDark ? '#111': '#fff', color:isDark ? '#ccc': '#000',fontSize:fontSize+'px',}"></mu-card-text>
           <mu-card-text v-html="chapter_content" :style="{textAlign: 'left',background:isDark ? '#111': '#fff', color:isDark ? '#ccc': '#000',fontSize:fontSize+'px',}"></mu-card-text>
         </mu-card>
-        <mu-appbar :color="'rgb(233, 30, 99)'" :style="{width: '100%',position: 'fixed',bottom: 0,background:isDark ? '#111': 'rgb(233, 30, 99)'}">
-          <mu-row gutter>
-            <mu-col span="4"><mu-button flat :disabled="prev_url === get_chapters_url" @click="changePage(prev_url)">上页</mu-button></mu-col>
-            <mu-col span="4"><mu-button flat :to="'/chapters?book_name='+book_name+'&get_chapters_url='+get_chapters_url">目录</mu-button></mu-col>
-            <mu-col span="4"><mu-button flat :disabled="next_url === get_chapters_url" @click="changePage(next_url)">下页</mu-button></mu-col>
-          </mu-row>
-        </mu-appbar>
-        <mu-appbar class="operation" color="rgba(0,0,0,0.94)" v-show="isOperationShow">
-          <mu-list>
-            <mu-sub-header>设置</mu-sub-header>
-            <mu-list-item button>
-              <mu-list-item-action>
-                <mu-icon value="brightness_2" color="orange"></mu-icon>
-              </mu-list-item-action>
-              <mu-list-item-title>
-                <mu-switch v-model="isDark"></mu-switch>
-              </mu-list-item-title>
-            </mu-list-item>
-            <mu-list-item button>
-              <mu-list-item-action>
-                <mu-icon value="font_download" color="cyan"></mu-icon>
-              </mu-list-item-action>
-              <mu-list-item-title>
-                <mu-radio :value="14" v-model="fontSize" :label="'14'" style="padding: 0 8px;"></mu-radio>
-                <mu-radio :value="16" v-model="fontSize" :label="'16'" style="padding: 0 8px;"></mu-radio>
-                <mu-radio :value="18" v-model="fontSize" :label="'18'" style="padding: 0 8px;"></mu-radio>
-              </mu-list-item-title>
-            </mu-list-item>
-          </mu-list>
-        </mu-appbar>
       </div>
+      <mu-appbar :color="'#ff0052'" :style="{width: '100%',position: 'fixed',bottom: 0,background:isDark ? '#111': '#ff0052'}">
+        <mu-row gutter>
+          <mu-col span="4"><mu-button flat :disabled="prev_url === get_chapters_url" @click="changePage(prev_url)">上页</mu-button></mu-col>
+          <mu-col span="4"><mu-button flat :to="'/chapters?book_name='+book_name+'&get_chapters_url='+get_chapters_url">目录</mu-button></mu-col>
+          <mu-col span="4"><mu-button flat :disabled="next_url === get_chapters_url" @click="changePage(next_url)">下页</mu-button></mu-col>
+        </mu-row>
+      </mu-appbar>
+      <mu-appbar class="operation" color="rgba(0,0,0,0.94)" v-show="isOperationShow">
+        <mu-list>
+          <mu-sub-header>设置</mu-sub-header>
+          <mu-list-item button>
+            <mu-list-item-action>
+              <mu-icon value="brightness_2" color="orange"></mu-icon>
+            </mu-list-item-action>
+            <mu-list-item-title>
+              <mu-switch v-model="isDark"></mu-switch>
+            </mu-list-item-title>
+          </mu-list-item>
+          <mu-list-item button>
+            <mu-list-item-action>
+              <mu-icon value="font_download" color="cyan"></mu-icon>
+            </mu-list-item-action>
+            <mu-list-item-title>
+              <mu-radio :value="14" v-model="fontSize" :label="'14'" style="padding: 0 8px;"></mu-radio>
+              <mu-radio :value="16" v-model="fontSize" :label="'16'" style="padding: 0 8px;"></mu-radio>
+              <mu-radio :value="18" v-model="fontSize" :label="'18'" style="padding: 0 8px;"></mu-radio>
+            </mu-list-item-title>
+          </mu-list-item>
+        </mu-list>
+      </mu-appbar>
     </div>
 </template>
 

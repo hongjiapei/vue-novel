@@ -1,6 +1,6 @@
 <template>
   <div :style="footerStyle">
-    <mu-bottom-nav :value.sync="$store.state.navigator_value" shift :color="'rgb(233, 30, 99)'">
+    <mu-bottom-nav :value.sync="$store.state.navigator_value" shift :color="'#ff0052'">
       <mu-bottom-nav-item title="书架" icon="restore" :to="navigator.bookshelf" :value="navigator.bookshelf"></mu-bottom-nav-item>
       <mu-bottom-nav-item title="分类" icon="list" :to="navigator.category" :value="navigator.category"></mu-bottom-nav-item>
       <mu-bottom-nav-item title="搜索" icon="search" :to="navigator.search" :value="navigator.search"></mu-bottom-nav-item>

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name" :color="'rgb(236, 81, 134)'">
+    <mu-appbar style="width: 100%;position: fixed;top: 0;" :title="book_name" :color="'#ff0052'">
       <span slot="left">
         <mu-icon value="navigate_before" @click="goBack"></mu-icon>
       </span>
@@ -21,7 +21,7 @@
           <mu-button flat @click="toggleSaveBook">{{showText}}</mu-button>
         </mu-card-actions>
       </mu-card>
-      <mu-alert color="rgb(233, 30, 99)" :show="isShow" transition="mu-scale-transition">
+      <mu-alert color="#ff0052" :show="isShow" transition="mu-scale-transition">
         <mu-icon value="check_circle"></mu-icon> 操作成功
       </mu-alert>
     </div>

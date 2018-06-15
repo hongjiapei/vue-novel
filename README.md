@@ -80,6 +80,7 @@ server {
 - [x] 夜间模式    
 - [x] 字体大小设置      
 - [x] 左右点击翻页    
+- [x] 超时自动重新加载       
 
 # 打包成app 
 vue写的应用可以打包成app，虽然没办法调用系统接口，但是对小说app来说也无所谓。  
@@ -106,7 +107,7 @@ keystore密码：123456
 ```  
 
 ## 打包+加固后的app示例  
-[app下载](https://pan.baidu.com/s/1H0vHdThk8b6n9HrCDtLXhg)  
+[app下载](https://pan.baidu.com/s/1LEBPCLReocxhMtmA2M-6bg)  
 
 # 应用截图  
 ![1](https://github.com/hongjiapei/vue-novel/blob/master/screenshots/%E7%AE%80%E4%BB%8B1.png)  
