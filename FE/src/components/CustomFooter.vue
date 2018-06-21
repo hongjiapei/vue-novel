@@ -27,6 +27,8 @@
     }
 </script>
 
-<style scoped>
-
+<style>
+  a.mu-bottom-item {
+    color: #fff;
+  }
 </style>
