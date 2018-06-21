@@ -176,4 +176,6 @@ keystore密码：123456
 
 >- 如果打算上架应用商店，打包的时候记得把包名记下来   
 
+# License  
+[MIT](https://raw.githubusercontent.com/hongjiapei/vue-novel/master/LICENSE)
 
