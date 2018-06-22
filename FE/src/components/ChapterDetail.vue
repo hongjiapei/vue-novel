@@ -86,7 +86,7 @@
           this.getChapterDetail(url)
         },
         scrollToTop () {
-          window.scroll(0, 0)
+          window.scroll(0,0)
         },
 
         // 点击中间弹出设置选项,点击右边下一章,点击左边上一章

@@ -8,7 +8,7 @@
           <mu-icon value="home" :color="'#fff'"></mu-icon>
         </mu-button>
       </mu-appbar>
-      <div style="margin-top: 60px;" v-if="chapters.length > 0">
+      <div style="margin: 60px 4%" v-if="chapters.length > 0">
         <mu-list>
           <mu-list-item button v-for="(item,index) in chapters" :style="{marginTop:'6px',marginBottom:'10px'}" :to="'/chapter/detail?book_url='+book_url+'&book_name='+book_name+'&get_chapterDetail_url='+item.get_chapterDetail_url">
             <mu-list-item-title>{{item.chapter_name}}</mu-list-item-title>
