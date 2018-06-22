@@ -107,7 +107,7 @@ keystore密码：123456
 ```  
 
 ## 打包+加固后的app示例  
-[app下载](https://pan.baidu.com/s/1ui92EoxOtRk8uwJb_VcjMg)  
+[app下载](https://pan.baidu.com/s/1teiCfjU6h2gKeuwYYyIg_g)  
 
 # 应用截图  
 ![1](https://github.com/hongjiapei/vue-novel/blob/master/screenshots/%E7%AE%80%E4%BB%8B1.png)

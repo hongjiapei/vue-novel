@@ -64,4 +64,7 @@
   .mu-card-actions {
     text-align: center;
   }
+  .mu-raised-button {
+    min-width: 60px;
+  }
 </style>

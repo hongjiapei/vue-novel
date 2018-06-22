@@ -5,7 +5,7 @@
         <mu-icon value="navigate_before" @click="goBack"></mu-icon>
       </span>
     </mu-appbar>
-    <div style="margin: 60px 4%" v-if="lists.length > 0">
+    <div style="margin: 60px 6%" v-if="lists.length > 0">
       <mu-list>
         <mu-list-item button v-for="(item,index) in lists" :style="{marginTop:'6px',marginBottom:'10px'}" :to="'/detail?book_name='+item.book_name+'&book_url='+item.book_url">
           <mu-list-item-content>
