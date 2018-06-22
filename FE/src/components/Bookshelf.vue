@@ -5,7 +5,7 @@
         <mu-icon value="menu" @click="drawerShow = !drawerShow"></mu-icon>
       </span>
     </mu-appbar>
-    <div style="margin-top: 60px;">
+    <div style="margin: 60px 0;">
       <mu-grid-list v-if="$store.state.books.length > 0">
         <mu-grid-tile v-for="(item,index) in $store.state.books" @click="toDetail(item)">
           <img src="./static/img/0_compressed.png" :style="{width:'100%',height:'100%'}">
@@ -16,6 +16,7 @@
         </mu-grid-tile>
       </mu-grid-list>
     </div>
+    <!-- 侧边菜单 -->
     <mu-drawer :open.sync="drawerShow" :docked="false" :style="{background:'rgba(255,255,255,0.92)'}">
       <mu-list toggle-nested>
         <mu-list-item button nested :open="true">
@@ -33,7 +34,7 @@
               <mu-radio :label="'三七中文(m.37zw.net)'" :value="'002'" v-model="$store.state.source"></mu-radio>
             </mu-list-item-title>
           </mu-list-item>
-          <mu-list-item button :ripple="false" slot="nested" @click="changeSource">
+          <mu-list-item button :ripple="false" slot="nested">
             <mu-list-item-title>
               <mu-radio :label="'有空再做'" :value="'003'" v-model="$store.state.source" disabled></mu-radio>
             </mu-list-item-title>
@@ -112,6 +113,7 @@
         },
         // 切换小说源
         changeSource () {
+          if (Vue.localStorage.get('source') === this.$store.state.source) return false
           localStorage.clear()
           this.$store.state.books = []
           this.$store.state.categories = []

@@ -1,7 +1,7 @@
 <template>
     <div>
       <mu-appbar style="width: 100%;position: fixed;top: 0;" title="分类" :z-depth="1" :color="'#ff0052'"></mu-appbar>
-      <div style="margin-top: 60px;">
+      <div style="margin: 60px 0;">
         <mu-list>
           <mu-list-item :to="'/lists?category_name='+item.category_name+'&category_url='+item.category_url" button v-for="(item,index) in $store.state.categories">
             <mu-list-item-title :style="{textAlign: 'center'}">{{item.category_name}}</mu-list-item-title>
@@ -28,8 +28,8 @@
               this.setCategories(res.data)
           })
         },
-        // 小说分类存入localStorage
-        setCategories (categories=[],expire=86400) {
+        // 小说分类存入localStorage，过期时间10天
+        setCategories (categories=[],expire=864000) {
           let tmp = {
             expire_time:Date.parse(new Date())/1000+expire,
             categories: categories

@@ -21,6 +21,7 @@
           <mu-col span="4"><mu-button flat :disabled="next_url === get_chapters_url" @click="changePage(next_url)">下页</mu-button></mu-col>
         </mu-row>
       </mu-appbar>
+      <!-- 设置选项 -->
       <mu-appbar class="operation" color="rgba(0,0,0,0.94)" v-show="isOperationShow">
         <mu-list>
           <mu-sub-header>设置</mu-sub-header>

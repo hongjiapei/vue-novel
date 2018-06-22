@@ -1,7 +1,7 @@
 <template>
   <div>
     <mu-appbar style="width: 100%;position: fixed;top: 0;" title="搜索" :z-depth="1" :color="'#ff0052'"></mu-appbar>
-    <div style="margin-top: 80px;margin-left: 10px;">
+    <div style="margin: 80px 0 60px 10px;">
       <mu-text-field placeholder="请输入书名" v-model="keyword" @keyup.enter="getSearch"></mu-text-field>
       <mu-button @click="getSearch" :color="'#ff0052'">搜索</mu-button>
       <br/>
