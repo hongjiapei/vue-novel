@@ -18,10 +18,10 @@
           </mu-list-item>
         </mu-list>
         <mu-row gutter>
-          <mu-col span="3"><mu-button :disabled="get_chapters_url === first_url" @click="changePage(first_url)" :color="'#ff0052'">首页</mu-button></mu-col>
-          <mu-col span="3"><mu-button :disabled="get_chapters_url === prev_url" @click="changePage(prev_url)" :color="'#ff0052'">上页</mu-button></mu-col>
-          <mu-col span="3"><mu-button :disabled="get_chapters_url === next_url" @click="changePage(next_url)" :color="'#ff0052'">下页</mu-button></mu-col>
-          <mu-col span="3"><mu-button :disabled="get_chapters_url === last_url" @click="changePage(last_url)" :color="'#ff0052'">尾页</mu-button></mu-col>
+          <mu-col span="2"><mu-button small :disabled="get_chapters_url === first_url" @click="changePage(first_url)" :color="'#ff0052'">首页</mu-button></mu-col>
+          <mu-col span="2" offset="1"><mu-button small :disabled="get_chapters_url === prev_url" @click="changePage(prev_url)" :color="'#ff0052'">上页</mu-button></mu-col>
+          <mu-col span="2" offset="1"><mu-button small :disabled="get_chapters_url === next_url" @click="changePage(next_url)" :color="'#ff0052'">下页</mu-button></mu-col>
+          <mu-col span="2" offset="1"><mu-button small :disabled="get_chapters_url === last_url" @click="changePage(last_url)" :color="'#ff0052'">尾页</mu-button></mu-col>
         </mu-row>
       </div>
     </div>

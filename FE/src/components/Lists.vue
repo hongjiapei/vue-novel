@@ -15,10 +15,10 @@
         </mu-list-item>
       </mu-list>
       <mu-row gutter>
-        <mu-col span="3" @click="changePage(first_url)"><mu-button :disabled="category_url === first_url" :color="'#ff0052'">首页</mu-button></mu-col>
-        <mu-col span="3" @click="changePage(prev_url)"><mu-button :disabled="category_url === prev_url" :color="'#ff0052'">上页</mu-button></mu-col>
-        <mu-col span="3" @click="changePage(next_url)"><mu-button :disabled="category_url === next_url" :color="'#ff0052'">下页</mu-button></mu-col>
-        <mu-col span="3" @click="changePage(last_url)"><mu-button :disabled="category_url === last_url" :color="'#ff0052'">尾页</mu-button></mu-col>
+        <mu-col span="2" @click="changePage(first_url)"><mu-button small :disabled="category_url === first_url" :color="'#ff0052'">首页</mu-button></mu-col>
+        <mu-col span="2" offset="1" @click="changePage(prev_url)"><mu-button small :disabled="category_url === prev_url" :color="'#ff0052'">上页</mu-button></mu-col>
+        <mu-col span="2" offset="1" @click="changePage(next_url)"><mu-button small :disabled="category_url === next_url" :color="'#ff0052'">下页</mu-button></mu-col>
+        <mu-col span="2" offset="1" @click="changePage(last_url)"><mu-button small :disabled="category_url === last_url" :color="'#ff0052'">尾页</mu-button></mu-col>
       </mu-row>
     </div>
   </div>
